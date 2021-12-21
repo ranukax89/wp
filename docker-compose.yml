@@ -1,4 +1,4 @@
-version: "3.6"
+version: "3.7"
 
 services:
   nginx:
@@ -7,6 +7,16 @@ services:
       - 8080:80
     volumes:
       - ./web:/usr/share/nginx/html/
+    links:
+      - wp
+    restart: always
 
+  wp:
+    image: wordpress:5.8.2-fpm
+    restart: alaways
+    ports:
+      - 9000:9000
+    volume:
+      - ./web:/var/www/html
 
   
